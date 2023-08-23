@@ -16,7 +16,11 @@ def main_page():
         student_functions.add_new_student()
         main_page()
     elif x == "2":
-        student_functions.remove_student()
+        if len(student_functions.students) > 0: # Check if students list is not empty.
+            student_functions.remove_student()
+        else:
+            print("The students list is empty.")
+            print("")
         main_page()
     elif x == "3":
         student_functions.edit_student()
