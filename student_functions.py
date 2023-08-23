@@ -8,32 +8,35 @@ from course_functions import courses
 from student import Student
 
 
-# students = [Student("haytham", "A"), Student("Fedaa", "B"), Student("Yaman", "C")]
-students = []
+students = [Student("haytham", "A"), Student("Fedaa", "B"), Student("Yaman", "C")]
+# students = []
 def add_new_student():
     name = input("Insert student name: ")
     print("")
     if name.replace(" ", "", len(name)).isalpha():
-        level = input("What is student leve? A|B|C: ")
-        print("")
-        if level.strip().upper() in Course.course_levels:
-            students.append(Student(name, level))
-            print("The student is added successfully.")
+        valid_level = False
+        while not valid_level: # Using While loop to ask user insert valid level.
+            level = input("What is student leve? A|B|C: ")
             print("")
-        else:
-            print(f"\"{level}\" is not a class level, try again.")
-            print("")
-            # add_new_student()
+            if level.strip().upper() in Course.course_levels:
+                students.append(Student(name, level))
+                print("The student is added successfully.")
+                print("")
+                valid_level = True
+            else:
+                print(f"\"{level}\" is not a class level, try again.")
+                print("")
     else:
-        print("WARNING! Invalid name, try again")
+        print("WARNING! Invalid name")
         print("")
-        # add_new_student()
+        
 
 
 def remove_student():
-    id_to_remove = input("Set the id of student to remove: ")
-    print("")
-    if len(students) > 0:
+    number_valid = False
+    while not number_valid:
+        id_to_remove = input("Set the id of student to remove: ")
+        print("")
         if id_to_remove.isdigit():
             remov_id = int(id_to_remove)
             for i in range(len(students)):
@@ -45,19 +48,19 @@ def remove_student():
                     students.remove(students[i])
                     print("Remove operation is done.")
                     print("")
-                    break      
+                    break  
+                
             if remov == False:
-                print(f"The student with id:{remov_id} is not exist, try again with another id.")
+                print(f"The student with id:{remov_id} is not exist.")
                 print("")
-                # remove_student()
-                    
+            number_valid = True           
         else:
             print("Please insert valid number.")
             print("")
-    else:
-        print("The students list is empty.")
-        print("")
-        # remove_student()
+            number_valid == False
+        
+    
+        
 
 
 def edit_student():
@@ -87,13 +90,13 @@ def edit_student():
                         else:
                             print("Try to insert valid level (A|B|C).")
                             print("")
-                            # edit_student()
+                            
                     else:
                         print(f"{new_name} is not a valid name, try with valid one.")
                         print("")
                         # edit_student()  
             if edt == False:
-                print(f"The student with id:{stud_id} is not exist, try again with another id.")
+                print(f"The student with id:{stud_id} is not exist.")
                 print("")
                 # edit_student()
         else:
@@ -132,8 +135,7 @@ def add_course_to_student():
                                 students[i].add_new_course(courses[j])
                                 break
                         if course_exist == False:
-                            print(f"The course with id:\"{studnt_id}\" is not exist," 
-                                f" try again with another id.")
+                            print(f"The course with id:\"{studnt_id}\" is not exist.")
                             print("")    
                             # add_course_to_student()
                         break
@@ -142,7 +144,7 @@ def add_course_to_student():
                         print("")
                         # add_course_to_student()
             if student_exist == False:
-                print(f"The student with id:{studnt_id} is not exist, try again with another id.")
+                print(f"The student with id:{studnt_id} is not exist.")
                 print("")
                 # add_course_to_student()
         else:
