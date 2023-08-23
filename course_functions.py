@@ -16,7 +16,7 @@ def create_new_course():
                                                          #exist in courses list.
             print("This course is exist")
             print("")
-            create_new_course()
+            # create_new_course() # To avoid falling into a closed circuit in the case of a wrong entry.
 
     level = input("What is course leve? A|B|C: ") 
     if level.strip().upper() in Course.course_levels: # Check if the inserted 
@@ -27,7 +27,7 @@ def create_new_course():
     else:
         print(f"\"{level}\" is not a class level, try again.")
         print("")
-        create_new_course()
+        # create_new_course() # To avoid falling into a closed circuit in the case of a wrong entry.
     
 
 
