@@ -12,13 +12,15 @@ def create_new_course():
     name = input("Insert Course title: ")
     print("")
     for course in courses:
-        if name.lower() == (course.course_name).lower(): #Check if the course is already exist in courses list.
+        if name.lower() == (course.course_name).lower(): #Check if the course is already 
+                                                         #exist in courses list.
             print("This course is exist")
             print("")
             create_new_course()
 
     level = input("What is course leve? A|B|C: ") 
-    if level.strip().upper() in Course.course_levels: # Check if the inserted level is one of levels (A,B,C) 
+    if level.strip().upper() in Course.course_levels: # Check if the inserted 
+                                                      #level is one of levels (A,B,C) 
         courses.append(Course(name, level))
         print("The course is added successfully")
         print("")

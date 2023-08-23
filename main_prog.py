@@ -22,7 +22,7 @@ def main_page():
         student_functions.edit_student()
         main_page()
     elif x == "4":
-        if len(student_functions.students) > 0:
+        if len(student_functions.students) > 0: # To ensure that the list of students is not empty.
             for i in range(len(student_functions.students)):
                 student_functions.students[i].show_student_data()
                 print("*" * 15)
@@ -42,7 +42,7 @@ def main_page():
         student_functions.add_course_to_student()
         main_page()
     elif x == "0":
-        print("Thanks for use this program")
+        print("Thanks for use this program") # End Message
     else:
         print("WARNING! Please insert one of choices.")
         print("")

@@ -15,9 +15,15 @@ class Student:
         self.student_name = student_name
         self.student_level = student_level
         self.student_courses = []
+# Method to add new course to student
+# NOTE: I am using the course object instead of 
+# course id as a parameter for this method, which will 
+# come from another function after check operations, 
+# to avoid using loops and long check operations inside 
+# this method.
 
 
-    def add_new_course(self, cours): # Method to add new course to student
+    def add_new_course(self, cours):  
         if (cours.course_level).lower() == (self.student_level).lower(): 
             self.student_courses.append(cours)
             print("Course is added successfully")
@@ -29,8 +35,10 @@ class Student:
       
 
     def show_student_data(self):
-        print(f"\"{self.student_name.capitalize()}\" is a student in the \"{self.student_level}\" level with id \"{self.student_id}\".") 
-        
+        print(f"\"{self.student_name.capitalize()}\" is a student in the "
+              f"\"{self.student_level}\" level with id \"{self.student_id}\".") 
+        # The code below is To Show student courses (if exist)after basic student data
+        # or show message to tell the user that no courses registered for this student.
         if len(self.student_courses) > 0:
             print("and these are the courses he is enrolled in:")
             print("")
@@ -38,7 +46,7 @@ class Student:
                 indx = (self.student_courses).index(course)
                 print(f"{indx+1}- \"{course.course_name}\"")
         else:
-            print("This student is not registered in any course")
+            print("This student is not registered in any course") 
             print("")
 
 

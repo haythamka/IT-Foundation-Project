@@ -13,7 +13,8 @@ class Course:
         self.course_level = course_level.upper()
 
 
-    def show_course_details(self): # Additional method to show courses for choose when we add course to student
+    def show_course_details(self): # Additional method to show courses for choose when 
+                                   #we add course to student.
         print(f"\"{self.course_id}\" is the id of \"{self.course_name.capitalize()}\"" 
               f" course that available for \"{self.course_level}\" level.")
 
