@@ -38,12 +38,16 @@ def main_page():
         course_functions.create_new_course()
         main_page()
     elif x == "6":
-        print("There are the available courses to choose from;")
-        print("")
-        for i in range(len(course_functions.courses)): # Show the courses to choose from.
-            course_functions.courses[i].show_course_details()
-        print("")
-        student_functions.add_course_to_student()
+        if len(course_functions.courses) > 0:
+            print("There are the available courses to choose from;")
+            print("")
+            for i in range(len(course_functions.courses)): # Show the courses to choose from.
+                course_functions.courses[i].show_course_details()
+            print("")
+            student_functions.add_course_to_student()
+        else:
+            print("The courses list is empty.")
+            print("")
         main_page()
     elif x == "0":
         print("Thanks for use this program") # End Message
