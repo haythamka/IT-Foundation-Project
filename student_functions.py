@@ -78,82 +78,81 @@ def edit_student():
                     edt = True
                     new_name = input("Write the new name of student: ")
                     print("")
+                    valid_level = False
                     if new_name.replace(" ", "", len(new_name)).isalpha():
-                        new_level = input("Set new level of student, A|B|C: ")
-                        print("")
-                        if new_level.strip().upper() in Course.course_levels:
-                            students[i].student_name = new_name
-                            students[i].student_level = new_level
-                            print("Edit operation is done.")
+                        while not valid_level:
+                            new_level = input("Set new level of student, A|B|C: ")
                             print("")
-                            break
-                        else:
-                            print("Try to insert valid level (A|B|C).")
-                            print("")
+                            if new_level.strip().upper() in Course.course_levels:
+                                students[i].student_name = new_name
+                                students[i].student_level = new_level
+                                print("Edit operation is done.")
+                                print("")
+                                break
+                            else:
+                                print("Try to insert valid level (A|B|C).")
+                                print("")
+                                valid_level = False
                             
                     else:
-                        print(f"{new_name} is not a valid name, try with valid one.")
+                        print(f"{new_name} is not a valid name")
                         print("")
-                        # edit_student()  
+            edt = True  
             if edt == False:
                 print(f"The student with id:{stud_id} is not exist.")
                 print("")
-                # edit_student()
+                
         else:
-            print("Please insert valid number.")
+            print("Invalid number.")
             print("")
-            # edit_student()
     else:
         print("The students list is empty.")
         print("")
-        # edit_student()
+    
 
 
 def add_course_to_student():
     if len(courses) > 0:
         st_id = input("Insert the Student id to add course in his courses: ")
         print("")
-        if st_id.isdigit():
+        if st_id.isdigit(): # If the input can convert to integer.
             studnt_id = int(st_id)
             for i in range(0, len(students), 1):
-                if studnt_id != students[i].student_id:
+                if studnt_id != students[i].student_id: # When the input id is not equal to any student id in the list.
                     student_exist = False
                     continue
-                else:
+                else: # When the input id is equal to id of one student in the list.
                     student_exist = True
                     corse_id = input(f"Insert the id of the course to add"
                                     f" it in \"{students[i].student_name}\" courses: ")
                     print("")
-                    if corse_id.isdigit():
+                    if corse_id.isdigit(): #Check ability to convert input "corse_id" to int.
                         id = int(corse_id)
-                        for j in range(len(courses)):
-                            if id != courses[j].course_id:
+                        for j in range(len(courses)): # Loop over courses list.
+                            if id != courses[j].course_id: # If converted input is not equal any course id.
                                 course_exist = False
                                 continue
-                            else:
+                            else: # If converted input is equal one of courses id.
                                 course_exist = True
                                 students[i].add_new_course(courses[j])
                                 break
                         if course_exist == False:
                             print(f"The course with id:\"{studnt_id}\" is not exist.")
-                            print("")    
-                            # add_course_to_student()
+                            print("")      
                         break
-                    else:
+                    else: # When "corse_id" cant convert to integer.
                         print("Invalid id")
                         print("")
-                        # add_course_to_student()
+                        
             if student_exist == False:
                 print(f"The student with id:{studnt_id} is not exist.")
                 print("")
-                # add_course_to_student()
-        else:
+        else: # When input cant convert to integer.
             print("Please insert valid number.")
             print("")
     else:
         print("The courses list is empty.")
         print("")
-        # add_course_to_student()
 
 
 def display_all_students():
