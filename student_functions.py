@@ -117,37 +117,41 @@ def add_course_to_student():
     print("")
     if st_id.isdigit(): # If the input can convert to integer.
         studnt_id = int(st_id)
-        for i in range(0, len(students), 1):
-            if studnt_id != students[i].student_id: # When the input id is not equal to any student id in the list.
-                student_exist = False
-                continue
-            else: # When the input id is equal to id of one student in the list.
-                student_exist = True
-                corse_id = input(f"Insert the id of the course to add"
-                                f" it in \"{students[i].student_name}\" courses: ")
-                print("")
-                if corse_id.isdigit(): #Check ability to convert input "corse_id" to int.
-                    id = int(corse_id)
-                    for j in range(len(courses)): # Loop over courses list.
-                        if id != courses[j].course_id: # If converted input is not equal any course id.
-                            course_exist = False
-                            continue
-                        else: # If converted input is equal one of courses id.
-                            course_exist = True
-                            students[i].add_new_course(courses[j])
-                            break
-                    if course_exist == False:
-                        print(f"The course with id:\"{studnt_id}\" is not exist.")
-                        print("")      
-                    break
-                else: # When "corse_id" cant convert to integer.
-                    print("Invalid id")
+        if len(students) > 0: # Check if students list is not empty
+            for i in range(0, len(students), 1):
+                if studnt_id != students[i].student_id: # When the input id is not equal to any student id in the list.
+                    student_exist = False
+                    continue
+                else: # When the input id is equal to id of one student in the list.
+                    student_exist = True
+                    corse_id = input(f"Insert the id of the course to add"
+                                    f" it in \"{students[i].student_name}\" courses: ")
                     print("")
-                    
-        if student_exist == False:
-            print(f"The student with id:{studnt_id} is not exist.")
+                    if corse_id.isdigit(): #Check ability to convert input "corse_id" to int.
+                        id = int(corse_id)
+                        for j in range(len(courses)): # Loop over courses list.
+                            if id != courses[j].course_id: # If converted input is not equal any course id.
+                                course_exist = False
+                                continue
+                            else: # If converted input is equal one of courses id.
+                                course_exist = True
+                                students[i].add_new_course(courses[j])
+                                break
+                        if course_exist == False:
+                            print(f"The course with id:\"{studnt_id}\" is not exist.")
+                            print("")      
+                        break
+                    else: # When "corse_id" cant convert to integer.
+                        print("Invalid id")
+                        print("")
+                        
+            if student_exist == False:
+                print(f"The student with id:{studnt_id} is not exist.")
+                print("")
+        else: # If students List is empty.
+            print("Students List is Empty")
             print("")
-    else: # When input cant convert to integer.
+    else: # When input can't convert to integer.
         print("Invalid number.")
         print("")
     
